@@ -1,4 +1,5 @@
 import InputHandler from "../handlers/InputHandler";
+import Components from "../utils/ComponentsConstants";
 import Vector2Utils from "../utils/Vector2Utils";
 
 export default class PlayerController {
@@ -12,7 +13,7 @@ export default class PlayerController {
     }
 
     move = () => {
-        const positionComponent = this.player.getComponent("PositionComponent");
+        const positionComponent = this.player.getComponent(Components.POSITION);
         let dx = 0;
         let dy = 0;
         if (InputHandler.isKeyDown("KeyW")) {

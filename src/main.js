@@ -5,6 +5,8 @@ import PositionComponent from "./components/PositionComponent";
 import TextureComponent from "./components/TextureComponent";
 import InputHandler from "./handlers/InputHandler";
 import PlayerController from "./systems/PlayerController";
+import Entities from "./utils/EntitiesConstants";
+import Components from "./utils/ComponentsConstants";
 
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
@@ -26,11 +28,11 @@ window.addEventListener("keyup", (e) => {
 });
 
 const sceneHandler = new SceneHandler();
-const scene = new Scene("scene-1", "scene", "test");
-const player = new Player("player-1", "player", "Oscar");
+const scene = new Scene("scene-1", Entities.SCENE, "test");
+const player = new Player("player-1", Entities.PLAYER, "Oscar");
 const playerController = new PlayerController(player);
-player.addComponent(new PositionComponent("PositionComponent", 50, 50));
-player.addComponent(new TextureComponent("TextureComponent", "red"));
+player.addComponent(new PositionComponent(Components.POSITION, 50, 50));
+player.addComponent(new TextureComponent(Components.TEXTURE, "red"));
 scene.addEntity(player);
 sceneHandler.addScene(scene);
 sceneHandler.setCurrentScene(0);
