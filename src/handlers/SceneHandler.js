@@ -1,22 +1,23 @@
 import RenderScene from "../systems/RenderScene";
+import EntityFactory from "../utils/EntityFactory";
 
 export default class SceneHandler {
-    constructor() {
-        this.scenes = [];
-        this.currentScene;
+    static SCENES = [];
+    static CURRENT_SCENE;
+
+    static createScene = (id, name) => {
+        const scene = EntityFactory.getScene(id, name);
+        SceneHandler.SCENES.push(scene);
+        return scene;
     }
 
-    addScene = (scene) => {
-        this.scenes.push(scene);
-    }
-
-    setCurrentScene = (index) => {
-        if (index >= 0 && index < this.scenes.length) {
-            this.currentScene = this.scenes[index];
+    static setCurrentScene = (index) => {
+        if (index >= 0 && index < SceneHandler.SCENES.length) {
+            SceneHandler.CURRENT_SCENE = SceneHandler.SCENES[index];
         }
     }
 
-    draw = (context) => {
-        RenderScene.draw(this.currentScene, context);
+    static draw = (context) => {
+        RenderScene.draw(SceneHandler.CURRENT_SCENE, context);
     }
 }
